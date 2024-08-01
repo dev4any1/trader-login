@@ -6,10 +6,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-<div class="login">
-    <div class="login-triangle"></div>
-    <h2 class="login-header">Log in</h2>
-    <form th:action="@{/login}" method="post" class="login-container">
+<div class="theapp">
+    <div class="theapp-triangle"></div>
+    <h2 class="theapp-header">Log in</h2>
+    <form th:action="@{/login}" method="post" class="theapp-container">
         <p th:if="${param.error}">
             Invalid username and password.
         </p>

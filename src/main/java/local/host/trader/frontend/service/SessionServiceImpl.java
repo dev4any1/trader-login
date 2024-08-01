@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import local.host.trader.frontend.controller.PublisherController;
 import local.host.trader.frontend.model.Exchange;
-import local.host.trader.frontend.model.Publisher;
+import local.host.trader.frontend.model.TraderUser;
 import local.host.trader.frontend.model.Session;
 import local.host.trader.frontend.model.Subscription;
 import local.host.trader.frontend.model.User;
@@ -59,19 +59,19 @@ public class SessionServiceImpl implements SessionService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Session> publisherList(Publisher publisher) {
-		Iterable<Session> sessions = sessionRepository.findByPublisher(publisher);
+	public List<Session> publisherList(TraderUser traderUser) {
+		Iterable<Session> sessions = sessionRepository.findByTraderUser(traderUser);
 		return StreamSupport.stream(sessions.spliterator(), false).collect(Collectors.toList());
 	}
 
 	@Override
 	@Transactional
-	public Session publish(Publisher publisher, Session session, Long exchangeId) throws ServiceException {
+	public Session publish(TraderUser traderUser, Session session, Long exchangeId) throws ServiceException {
 		Exchange exchange = exchangeRepository.findOne(exchangeId);
 		if (exchange == null) {
 			throw new ServiceException("Exchange not found");
 		}
-		session.setPublisher(publisher);
+		session.setTraderUser(traderUser);
 		session.setExchange(exchange);
 		try {
 			Session result = sessionRepository.save(session);
@@ -84,12 +84,12 @@ public class SessionServiceImpl implements SessionService {
 
 	@Override
 	@Transactional
-	public void unPublish(Publisher publisher, Long id) throws ServiceException {
+	public void unPublish(TraderUser traderUser, Long id) throws ServiceException {
 		Session session = sessionRepository.findOne(id);
 		if (session == null) {
 			throw new ServiceException("Session doesn't exist");
 		}
-		String filePath = PublisherController.getFileName(publisher.getId(), session.getUuid());
+		String filePath = PublisherController.getFileName(traderUser.getId(), session.getUuid());
 		File file = new File(filePath);
 		if (file.exists()) {
 			boolean deleted = file.delete();
@@ -97,7 +97,7 @@ public class SessionServiceImpl implements SessionService {
 				log.error("File " + filePath + " cannot be deleted");
 			}
 		}
-		if (!session.getPublisher().getId().equals(publisher.getId())) {
+		if (!session.getTraderUser().getId().equals(traderUser.getId())) {
 			throw new ServiceException("Session cannot be removed");
 		}
 		sessionRepository.delete(session);

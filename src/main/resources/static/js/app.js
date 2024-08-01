@@ -78,7 +78,20 @@ app.controller("SessionController", function ($scope, $http, $filter) {
         });
     }
 });
-
+//app.controller("BrowseController", function ($scope, $http, $filter, $window) {
+//$scope.getJournals = function () {
+ //   $http.get('/rest/journals/published').success(function (data, status, headers, config) {
+//        var journals = data;
+//        for (var i = 0; i < journals.length; i++) {
+//            var journal = journals[i];
+//            journal.publishDate = $filter('date')(journal.publishDate);
+///            journal.readLink = "/view/" + journal.id;
+//        }
+//        $scope.journalList = journals;
+//    }).error(function (data, status, headers, config) {
+//        console.error(status, data, headers);
+//    });
+//}
 app.controller("BrowseController", function ($scope, $http, $filter, $window) {
     $scope.getSessions = function () {
         $http.get('/rest/sessions/active').success(function (data, status, headers, config) {
@@ -88,7 +101,7 @@ app.controller("BrowseController", function ($scope, $http, $filter, $window) {
                 session.publishDate = $filter('date')(session.publishDate);
                 session.viewLink = "/view/" + session.id;
             }
-            $scope.sessionList = session;
+            $scope.sessionList = sessions;
         }).error(function (data, status, headers, config) {
             console.error(status, data, headers);
         });

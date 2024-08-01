@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import local.host.trader.frontend.Application;
-import local.host.trader.frontend.model.Publisher;
+import local.host.trader.frontend.model.TraderUser;
 import local.host.trader.frontend.model.Session;
 import local.host.trader.frontend.repository.PublisherRepository;
 import local.host.trader.frontend.service.CurrentUser;
@@ -47,7 +47,7 @@ public class PublisherController {
 			RedirectAttributes redirectAttributes, @AuthenticationPrincipal Principal principal) {
 
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
+		Optional<TraderUser> publisher = publisherRepository.findByUser(activeUser.getUser());
 
 		String uuid = UUID.randomUUID().toString();
 		File dir = new File(getDirectory(publisher.get().getId()));

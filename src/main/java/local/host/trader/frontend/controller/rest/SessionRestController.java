@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import local.host.trader.frontend.dto.SubscriptionDTO;
 import local.host.trader.frontend.model.Exchange;
-import local.host.trader.frontend.model.Publisher;
+import local.host.trader.frontend.model.TraderUser;
 import local.host.trader.frontend.model.Session;
 import local.host.trader.frontend.model.Subscription;
 import local.host.trader.frontend.model.User;
@@ -51,14 +51,14 @@ public class SessionRestController {
 	@RequestMapping(value = "/active", method = RequestMethod.GET)
 	public List<Session> publishedList(@AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
+		Optional<TraderUser> publisher = publisherRepository.findByUser(activeUser.getUser());
 		return sessionService.publisherList(publisher.get());
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public void unPublish(@PathVariable("id") Long id, @AuthenticationPrincipal Principal principal) {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
-		Optional<Publisher> publisher = publisherRepository.findByUser(activeUser.getUser());
+		Optional<TraderUser> publisher = publisherRepository.findByUser(activeUser.getUser());
 		sessionService.unPublish(publisher.get(), id);
 	}
 
@@ -67,9 +67,9 @@ public class SessionRestController {
 		CurrentUser activeUser = (CurrentUser) ((Authentication) principal).getPrincipal();
 		User persistedUser = userService.findById(activeUser.getId());
 		List<Subscription> subscriptions = persistedUser.getSubscriptions();
-		List<Exchange> categories = exchangeRepository.findAll();
-		List<SubscriptionDTO> subscriptionDTOs = new ArrayList<>(categories.size());
-		categories.stream().forEach(c -> {
+		List<Exchange> exchanges = exchangeRepository.findAll();
+		List<SubscriptionDTO> subscriptionDTOs = new ArrayList<>(exchanges.size());
+		exchanges.stream().forEach(c -> {
 			SubscriptionDTO subscr = new SubscriptionDTO(c);
 			Optional<Subscription> subscription = subscriptions.stream().filter(s -> s.getExchange().getId().equals(c.getId())).findFirst();
 			subscr.setActive(subscription.isPresent());

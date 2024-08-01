@@ -30,8 +30,8 @@ public class Session implements Serializable {
 	private Date publishDate;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "publisher_id")
-	private Publisher publisher;
+	@JoinColumn(name = "trader_user_id")
+	private TraderUser traderUser;
 
 	@Column(nullable = false)
 	private String uuid; // external id
@@ -65,12 +65,12 @@ public class Session implements Serializable {
 		return publishDate;
 	}
 
-	public Publisher getPublisher() {
-		return publisher;
+	public TraderUser getTraderUser() {
+		return traderUser;
 	}
 
-	public void setPublisher(Publisher publisher) {
-		this.publisher = publisher;
+	public void setTraderUser(TraderUser traderUser) {
+		this.traderUser = traderUser;
 	}
 
 	public String getUuid() {
@@ -100,13 +100,13 @@ public class Session implements Serializable {
 		Session j = (Session) o;
 
 		return true && Objects.equals(id, j.getId()) && Objects.equals(name, j.getName())
-				&& Objects.equals(publishDate, j.getPublishDate()) && Objects.equals(publisher, j.getPublisher())
+				&& Objects.equals(publishDate, j.getPublishDate()) && Objects.equals(traderUser, j.getTraderUser())
 				&& Objects.equals(uuid, j.getUuid()) && Objects.equals(exchange, j.getExchange());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, publishDate, publisher, uuid, exchange);
+		return Objects.hash(id, name, publishDate, traderUser, uuid, exchange);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class Session implements Serializable {
 		sb.append("    id: ").append(toIndentedString(id)).append("\n");
 		sb.append("    name: ").append(toIndentedString(name)).append("\n");
 		sb.append("    publishDate: ").append(toIndentedString(publishDate)).append("\n");
-		sb.append("    ").append(toIndentedString(publisher)).append("\n");
+		sb.append("    ").append(toIndentedString(traderUser)).append("\n");
 		sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
 		sb.append("    ").append(toIndentedString(exchange)).append("\n");
 		sb.append("}");

@@ -8,13 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Publisher implements Serializable {
+@Table(name = "trader_user")
+public class TraderUser implements Serializable {
 
-	private static final long serialVersionUID = Publisher.class.getName().hashCode();
+	private static final long serialVersionUID = TraderUser.class.getName().hashCode();
 
 	@Id
 	@GeneratedValue
@@ -59,7 +61,7 @@ public class Publisher implements Serializable {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		Publisher p = (Publisher) o;
+		TraderUser p = (TraderUser) o;
 
 		return true && Objects.equals(id, p.getId()) && Objects.equals(user, p.getUser())
 				&& Objects.equals(name, p.getName());
@@ -73,7 +75,7 @@ public class Publisher implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(Publisher.class.getSimpleName().toLowerCase()).append(": {\n");
+		sb.append(TraderUser.class.getSimpleName().toLowerCase()).append(": {\n");
 		sb.append("    id: ").append(toIndentedString(id)).append("\n");
 		sb.append("    ").append(toIndentedString(user)).append("\n");
 		sb.append("    name: ").append(toIndentedString(name)).append("\n");

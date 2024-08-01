@@ -47,12 +47,12 @@ public class SessionController {
 		List<Subscription> subscriptions = user.getSubscriptions();
 		Optional<Subscription> subscription = subscriptions.stream()
 				.filter(s -> s.getExchange().getId().equals(exchange.getId())).findFirst();
-		if (subscription.isPresent() || session.getPublisher().getId().equals(user.getId())) {
-			File file = new File(PublisherController.getFileName(session.getPublisher().getId(), session.getUuid()));
+		if (subscription.isPresent() || session.getTraderUser().getId().equals(user.getId())) {
+			File file = new File(PublisherController.getFileName(session.getTraderUser().getId(), session.getUuid()));
 			InputStream in = new FileInputStream(file);
 			return ResponseEntity.ok(IOUtils.toByteArray(in));
 		} else {
-			throw new ServiceException("unsubscribed access, or user isn't a publisher");
+			throw new ServiceException("unsubscribed access, or user isn't a trader");
 		}
 
 	}

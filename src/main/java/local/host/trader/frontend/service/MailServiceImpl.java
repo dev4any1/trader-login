@@ -109,7 +109,7 @@ public class MailServiceImpl implements MailService{
 		StringBuilder message = new StringBuilder();
 		digest.forEach(d -> {
 			message.append(String.format("New Session %s was earned by %s at %s. \n", d.getName(), 
-					d.getPublisher().getName(), d.getPublishDate().toString()));
+					d.getTraderUser().getName(), d.getPublishDate().toString()));
 		});
 		if (!digest.isEmpty()){
 			send(message.toString(), sub.getUser().getLoginName());
