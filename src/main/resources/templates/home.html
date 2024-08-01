@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Welcome to automated trading system</title>
+    <script src="js/angular-min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body ng-app="TraderApp" ng-controller="ExchangeController">
+<h2>Welcome to automated trading system</h2>
+
+
+<div sec:authorize="isAuthenticated()" ng-controller="getExchanges">
+    <table>
+        <thead>
+        <td>Exchange</td>
+        <td>Assign</td>
+        </thead>
+        <tbody>
+        <tr ng-repeat="exchange in exchanges">
+            <td>{{exchange.name}}</td>
+            <td>
+                <input type="button" value="assign" ng-disabled="assignment.active"  ng-click="assign(exchange.id)"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <form action="/sessions">
+                    <input type="submit" value="view sessions" />
+                </form>
+            </td>
+            <td>
+                <form action="/logout" method="post" ng-if="isAnySubscription">
+                    <input type="submit" value="Logout"/>
+                </form>
+            </td>
+            <td>
+                <form sec:authorize="${hasAnyAuthority('TRADER')}" action="/trader/browse">
+                    <input type="submit" value="Go to Trader page"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div sec:authorize="isAnonymous()" ng-controller="getExchanges">
+    <table>
+        <thead>
+        <td>Exchange</td>
+        <td>Assign</td>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="exchange in exchanges">
+            <td>{{exchange.name}}</td>
+            <td>
+                <a href="/login">Login</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
