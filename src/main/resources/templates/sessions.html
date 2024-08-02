@@ -9,28 +9,12 @@
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body ng-app="TraderApp" ng-controller="SessionController">
-	<div class="theapp">
-		<div class="theapp-triangle"></div>
-		<p th:inline="text" class="theapp-header">Hello
-			[[${#httpServletRequest.remoteUser}]]!</p>
-
-		<table>
-			<tr>
-				<td>
-					<form th:action="@{/logout}" method="post">
-						<input type="submit" value="Logout" />
-					</form>
-				</td>
-				<td>
-					<form th:action="@{/}" method="get">
-						<input type="submit" value="Go to exchanges" />
-					</form>
-				</td>
-			</tr>
-		</table>
-
-
-		<div ng-controller="getSessions" ng-show="sessionList.length > 0">
+	<div class="trdr">
+		<div class="trdr-triangle"></div>
+		<p th:inline="text" class="trdr-header">Hello
+				[[${#httpServletRequest.remoteUser}]]!</p>
+		<p/>
+		<div ng-controller="getSessions" ng-show="sessionList.length > 0" class="trdr-container" style="overflow-x:auto;">
 			<table id="session-list">
 				<thead>
 					<tr>
@@ -51,9 +35,14 @@
 					</tr>
 				</tbody>
 			</table>
+			<form th:action="@{/}" method="get">
+				<p><input type="submit" value="Back home" /></p>
+			</form>
+			<form th:action="@{/logout}" method="post">
+				<p><input type="submit" value="Logout"/></p>
+			</form>
 		</div>
 	</div>
-
 </body>
 </html>
 

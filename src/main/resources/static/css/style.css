@@ -1,63 +1,89 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
+:root {
+  --bg0: #000000;
+  --bg1: #101014;
+  --bg2: #17181E;
+  --fg0: #25282C;
+  --fg1: #2B2A33;
+  --fg2: #404854;
+  --gld0: #41361D;
+  --gld1: #AE9500;
+  --gld2: #F7A600;
+  --green: #20B26C;
+  --red: #EF454A;
+  --accent: #FFFFFF;
+}
 body {
-	background-color: #900C3E;
+	background-color: var(--bg0);
+	text-color: var(--accent);
 	font-family: monospace;
 }
 
 table {
-	display: block;
+	color: var(--gld1);
+	padding: 12px;
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+  border-bottom: 1px solid var(--bg2);
+  text-align: center;
 }
 
-.theapp {
-	width: 400px;
+tr:nth-child(even) {background-color: var(--bg0);}
+
+.trdr {
+	width: 600px;
 	margin: 16px auto;
-	font-size: 16px;
+	font-size: 14px;
 }
 
-.theapp-header, .theapp p {
+.trdr-header, .trdr p {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-.theapp-triangle {
+.trdr-triangle {
 	width: 0;
 	margin-right: auto;
 	margin-left: auto;
 	border: 12px solid transparent;
-	border-bottom-color: #571845;
+	border-bottom-color: var(--bg2);
 }
 
-.theapp-header {
-	background: #571845;
+.trdr-header {
+	background: var(--bg2);
 	padding: 20px;
 	font-size: 1.4em;
 	font-weight: normal;
 	text-align: center;
-	text-transform: uppercase;
-	color: #FFC300;
+	text-transform: none;
+	color: var(--gld1);
 }
 
-.theapp-container {
-	background: #900C3E;
+.trdr-container {
+	background: var(--bg1);
 	padding: 12px;
+	display: inline-block;
+	width: 96%;
 }
 
-.theapp p {
+.trdr p {
 	padding: 12px;
+	width: 96%;
 }
 
-.theapp a {
+.trdr a {
 	text-align: center;
 }
 
-.theapp a:link {
+.trdr a:link, .trdr-wide a:link {
 	text-decoration: none;
 }
 
-.theapp input, .theapp a {
+.trdr input, .trdr a {
 	box-sizing: border-box;
-	display: block;
 	width: 100%;
 	border-width: 1px;
 	border-style: solid;
@@ -65,36 +91,34 @@ table {
 	outline: 0;
 	font-family: inherit;
 	font-size: 0.95em;
-	color: #571845;
+	color: var(--gld2);
 }
 
-.theapp input[type="email"], .theapp input[type="password"], .theapp a {
-	border-color: #571845;
-	color: #571845;
+.trdr input[type="email"], .trdr input[type="password"], .trdr a {
+	border-color: (--gld0);
+	color: var(--gld1);
 }
 
-.theapp input[type="email"]:focus, .theapp input[type="password"]:focus,
-	.theapp a:focus {
-	border-color: #C70039;
+.trdr input[type="email"]:focus, .trdr input[type="password"]:focus,
+	.trdr a:focus {
+	border-color: (--gld2);
 }
 
-.theapp input[type="submit"], .theapp input[type="button"], .theapp a {
-	background: #571845;
+.trdr input[type="submit"], .trdr input[type="button"], .trdr a {
+	background: var(--fg1);
 	border-color: transparent;
-	color: #FFC300;
+	color: var(--gld1);
 	cursor: pointer;
 }
 
-.theapp label {
-	color: #FFC300;
+.trdr label {
+	color: var(--gld1);
 }
 
-.theapp input[type="submit"], .theapp input[type="button"], .theapp a {
-	:hover { background:#C70039;
-	
+.trdr input[type="submit"], .trdr input[type="button"], .trdr a {
+	:hover { background:#C70039;}
 }
 
-.theapp input[type="submit"], .theapp input[type="button"], .theapp a {
-	:focus { border-color:#FF5733;
-	
+.trdr input[type="submit"], .trdr input[type="button"], .trdr a {
+	:focus { border-color:#FF5733;}
 }

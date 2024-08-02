@@ -10,64 +10,53 @@
 </head>
 <body ng-app="TraderApp" ng-controller="ExchangeController">
 	<div sec:authorize="isAuthenticated()" ng-controller="getExchanges">
-		<div class="theapp">
-			<div class="theapp-triangle"></div>
-			<p th:inline="text" class="theapp-header">Hello
+		<div class="trdr">
+			<div class="trdr-triangle"></div>
+			<p th:inline="text" class="trdr-header">Hello
 				[[${#httpServletRequest.remoteUser}]]!</p>
-			<table>
-				<thead>
-					<td>Exchange</td>
-					<td>Assign</td>
-				</thead>
-				<tbody>
-					<tr ng-repeat="exchange in exchanges">
-						<td>{{exchange.name}}</td>
-						<td><input type="button" value="assign"
-							ng-disabled="assignment.active" ng-click="assign(exchange.id)" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<table>
-				<tr>
-					<td>
-						<form action="/sessions">
-							<input type="submit" value="view sessions" />
-						</form>
-					</td>
-					<td>
-						<form action="/logout" method="post" ng-if="isAnySubscription">
-							<input type="submit" value="Logout" />
-						</form>
-					</td>
-					<td>
-						<form sec:authorize="${hasAnyAuthority('TRADER')}"
-							action="/trader/browse">
-							<input type="submit" value="Go to Trader page" />
-						</form>
-					</td>
-				</tr>
-			</table>
+			<div class="trdr-container">
+				<table>
+					<thead>
+						<td>Exchange</td>
+						<td>Assign</td>
+					</thead>
+					<tbody>
+						<tr ng-repeat="exchange in exchanges">
+							<td>{{exchange.name}}</td>
+							<td><input type="button" value="assign"
+								ng-disabled="assignment.active" ng-click="assign(exchange.id)" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<form action="/sessions" class="trdr-container">
+					<p><input type="submit" value="view sessions" /></p>
+				</form>
+				<form action="/logout" method="post" ng-if="isAnySubscription"
+					class="trdr-container">
+					<p><input type="submit" value="Logout" /></p>
+				</form>
+				<form sec:authorize="${hasAnyAuthority('TRADER')}"
+					action="/trader/browse" class="trdr-container">
+					<p><input type="submit" value="Go to Trader page" /></p>
+				</form>
+			</div>
 		</div>
 	</div>
 
 	<div sec:authorize="isAnonymous()" ng-controller="getExchanges">
-		<div class="theapp">
-			<div class="theapp-triangle"></div>
-			<h2 class="theapp-header">Welcome stranger</h2>
+		<div class="trdr">
+			<div class="trdr-triangle"></div>
+			<h2 class="trdr-header">Welcome stranger</h2>
 			<table>
-				<thead>
-					<td>Exchange</td>
-					<td>Assign</td>
-				</thead>
+				<thead><td>Exchange</td></thead>
 				<tbody>
-
 					<tr ng-repeat="exchange in exchanges">
 						<td>{{exchange.name}}</td>
-						<td><a href="/login">Login</a></td>
 					</tr>
 				</tbody>
 			</table>
+			<p><a href="/login">Login</a></p>
 		</div>
 	</div>
 </body>

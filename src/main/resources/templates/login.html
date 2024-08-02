@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Sign in</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+<title>Sign in</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-<div class="theapp">
-    <div class="theapp-triangle"></div>
-    <h2 class="theapp-header">Log in</h2>
-    <form th:action="@{/login}" method="post" class="theapp-container">
-        <p th:if="${param.error}">
-            Invalid username and password.
-        </p>
-        <p th:if="${param.logout}">
-            You have been logged out.
-        </p>
-        <p><input type="text" name="username" placeholder="Login"/></p>
-        <p><input type="password" name="password" placeholder="Password"/></p>
-        <p><input type="submit" value="Log in"/></p>
-    </form>
-</div>
+	<div class="trdr">
+		<div class="trdr-triangle"></div>
+		<p th:inline="text" class="trdr-header">Remote user IP [[${#httpServletRequest.remoteAddr}]]</p>
+		<div class="trdr-container">
+			<form th:action="@{/login}" method="post">
+				<p th:if="${param.error}">Invalid username and password.</p>
+				<p th:if="${param.logout}">You have been logged out.</p>
+				<p><input type="text" name="username" placeholder="Login" /></p>
+				<p><input type="password" name="password" placeholder="Password" /></p>
+				<p><input type="submit" value="Log in" /></p>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
