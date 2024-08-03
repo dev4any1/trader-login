@@ -29,16 +29,15 @@
 						</tr>
 					</tbody>
 				</table>
-				<form action="/sessions" class="trdr-container">
-					<p><input type="submit" value="view sessions" /></p>
+				<form action="/sessions">
+					<p><input type="submit" value="view sessions"  class="trdr-input"/></p>
 				</form>
-				<form action="/logout" method="post" ng-if="isAnySubscription"
-					class="trdr-container">
-					<p><input type="submit" value="Logout" /></p>
+				<form action="/logout" method="post">
+					<p><input type="submit" value="Logout"  class="trdr-input"/></p>
 				</form>
 				<form sec:authorize="${hasAnyAuthority('TRADER')}"
-					action="/trader/browse" class="trdr-container">
-					<p><input type="submit" value="Go to Trader page" /></p>
+					action="/trader/browse">
+					<p><input type="submit" value="Go to Trader page"  class="trdr-input"/></p>
 				</form>
 			</div>
 		</div>
@@ -56,7 +55,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<p><a href="/login">Login</a></p>
+			<form class="trdr-container">
+				<p><a href="/login" class="trdr-input">Login</a></p>
+			</form>
 		</div>
 	</div>
 </body>

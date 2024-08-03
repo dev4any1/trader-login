@@ -31,16 +31,17 @@
 						<td>{{session.exchange.name}}</td>
 						<td>{{session.publishDate}}</td>
 						<td><input type="button" value="stop"
-							ng-click="delete(session.id)" /> <input type="button"
+							ng-click="delete(session.id)" /></td> 
+						<td><input type="button"
 							value="view" ng-click="view(session.id)" /></td>
 					</tr>
 				</tbody>
 			</table>
 			<form action="/trader/trade">
-				<p><input type="submit" value="New Session" /></p>
+				<p><input type="submit" value="New Session"  class="trdr-input"/></p>
 			</form>
 			<form action="/sessions">
-				<p><input type="submit" value="Back to Sessions" /></p>
+				<p><input type="submit" value="Back to Sessions"  class="trdr-input"/></p>
 			</form>
 		</div>
 	</div>

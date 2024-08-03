@@ -15,7 +15,7 @@
 }
 body {
 	background-color: var(--bg0);
-	text-color: var(--accent);
+	color: var(--accent);
 	font-family: monospace;
 }
 
@@ -27,18 +27,20 @@ table {
     width: 100%;
 }
 th, td {
-  border-bottom: 1px solid var(--bg2);
+  border-bottom: 1px solid var(--bg0);
   text-align: center;
 }
 
-tr:nth-child(even) {background-color: var(--bg0);}
+tr:nth-child(even) {background-color: var(--bg2);}
 
 .trdr {
 	width: 600px;
 	margin: 16px auto;
 	font-size: 14px;
 }
-
+.trdr p {
+	color: var(--gld2);
+}
 .trdr-header, .trdr p {
 	margin-top: 0;
 	margin-bottom: 0;
@@ -69,20 +71,7 @@ tr:nth-child(even) {background-color: var(--bg0);}
 	width: 96%;
 }
 
-.trdr p {
-	padding: 12px;
-	width: 96%;
-}
-
-.trdr a {
-	text-align: center;
-}
-
-.trdr a:link, .trdr-wide a:link {
-	text-decoration: none;
-}
-
-.trdr input, .trdr a {
+.trdr-input {
 	box-sizing: border-box;
 	width: 100%;
 	border-width: 1px;
@@ -94,14 +83,28 @@ tr:nth-child(even) {background-color: var(--bg0);}
 	color: var(--gld2);
 }
 
-.trdr input[type="email"], .trdr input[type="password"], .trdr a {
-	border-color: (--gld0);
-	color: var(--gld1);
+.trdr p {
+	padding: 12px;
+	width: 96%;
+}
+
+.trdr a {
+	text-align: center;
+}
+
+.trdr a:link {
+	text-decoration: none;
+}
+
+.trdr input[type="email"], .trdr input[type="password"], .trdr input[type="text"], .trdr input[type="file"], .trdr a {
+	background: var(--fg2);
+	border-color: transparent;
+	color: var(--gld2);
 }
 
 .trdr input[type="email"]:focus, .trdr input[type="password"]:focus,
 	.trdr a:focus {
-	border-color: (--gld2);
+	border-color: var(--gld0);
 }
 
 .trdr input[type="submit"], .trdr input[type="button"], .trdr a {
@@ -112,13 +115,38 @@ tr:nth-child(even) {background-color: var(--bg0);}
 }
 
 .trdr label {
-	color: var(--gld1);
+	color: var(--accent);
+}
+.trdr-browse {
+	position: relative;
+	width: 96%;
+ 	left: 2%;
+}
+.trdr-btn-browse {
+	position: absolute;
+	z-index: 1;
+	coursor: "pointer";
+	top: 0;
+	left:0;
+	width:100%;
+}
+
+.trdr input[type="file"] {
+	position: absolute;
+	-moz-opacity:0 ;
+	filter: alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+	coursor: "pointer";
+	top: 0;
+	left:0;
+	width:100%;
 }
 
 .trdr input[type="submit"], .trdr input[type="button"], .trdr a {
-	:hover { background:#C70039;}
+	:hover { background:var(--accent);}
 }
 
 .trdr input[type="submit"], .trdr input[type="button"], .trdr a {
-	:focus { border-color:#FF5733;}
+	:focus { border-color:var(--gld0);}
 }

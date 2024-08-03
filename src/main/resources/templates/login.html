@@ -14,9 +14,9 @@
 			<form th:action="@{/login}" method="post">
 				<p th:if="${param.error}">Invalid username and password.</p>
 				<p th:if="${param.logout}">You have been logged out.</p>
-				<p><input type="text" name="username" placeholder="Login" /></p>
-				<p><input type="password" name="password" placeholder="Password" /></p>
-				<p><input type="submit" value="Log in" /></p>
+				<p><input type="text" name="username" placeholder="Login" class="trdr-input"/></p>
+				<p><input type="password" name="password" placeholder="Password" class="trdr-input"/></p>
+				<p><input type="submit" value="Log in" class="trdr-input"/></p>
 			</form>
 		</div>
 	</div>

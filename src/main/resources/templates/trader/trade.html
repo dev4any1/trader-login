@@ -8,10 +8,6 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 <body ng-app="TraderApp">
-
-	<div th:if="${message}">
-		<h2 th:text="${message}" />
-	</div>
 	<div class="trdr" ng-controller="ExchangeController">
 		<div class="trdr-triangle"></div>
 		<p th:inline="text" class="trdr-header">Hello
@@ -21,16 +17,19 @@
 				action="/trader/trade">
 				<p th:if="${param.error}">Invalid username and password.</p>
 				<p th:if="${param.logout}">You have been logged out.</p>
-				<p><select name="exchange" placeholder="Exchange">
+				<p th:if="${message}"><h2 th:text="${message}"/></p>
+				<p><select class="trdr-input" name="exchange" placeholder="Exchange">
 					<option ng-repeat="option in exchanges" value="{{option.id}}">{{option.name}}</option>
 				</select></p>
-				<p><input value="Select File" type="file" name="file"
-					accept="application/pdf" placeholder="Exchange credentials"/></p>
-				<p><input type="text" name="name" placeholder="Assets"/></p>
-				<p><input type="text" name="limits"  placeholder="Limits"/></p>
-				<p><input type="button" value="Back"
+				<p><div class="trdr-input" th:classappend="trdr-browse">
+					<label th:classappend="trdr-btn-browse">Select exchange credentials file</label>
+					<input type="file" name="file" accept="application/pdf"/>
+					</div></p>
+				<p><input type="text" name="name" placeholder="Assets"  class="trdr-input"/></p>
+				<p><input type="text" name="limits"  placeholder="Limits"  class="trdr-input"/></p>
+				<p><input type="button" value="Back"  class="trdr-input"
 					onclick="window.location.href='/trader/browse'" /></p>
-				<p><input type="submit" value="Trade" /></p>
+				<p><input type="submit" value="Trade"  class="trdr-input"/></p>
 			</form>
 		</div>
 	</div>

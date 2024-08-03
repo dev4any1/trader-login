@@ -14,32 +14,34 @@
 		<p th:inline="text" class="trdr-header">Hello
 				[[${#httpServletRequest.remoteUser}]]!</p>
 		<p/>
-		<div ng-controller="getSessions" ng-show="sessionList.length > 0" class="trdr-container" style="overflow-x:auto;">
-			<table id="session-list">
-				<thead>
-					<tr>
-						<td>Name</td>
-						<td>Publisher</td>
-						<td>Exchange</td>
-						<td>Publish date</td>
-						<td>View Link</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="session in sessionList">
-						<td>{{session.name}}</td>
-						<td>{{session.trader_user.name}}</td>
-						<td>{{session.exchange.name}}</td>
-						<td>{{session.publishDate}}</td>
-						<td><a href="{{session.viewLink}}">View</a></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="trdr-container">
+			<div ng-controller="getSessions" ng-show="sessionList.length > 0" style="overflow-x:auto;">
+				<table id="session-list">
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Publisher</td>
+							<td>Exchange</td>
+							<td>Publish date</td>
+							<td>View Link</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="session in sessionList">
+							<td>{{session.name}}</td>
+							<td>{{session.trader_user.name}}</td>
+							<td>{{session.exchange.name}}</td>
+							<td>{{session.publishDate}}</td>
+							<td><a href="{{session.viewLink}}">View</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<form th:action="@{/}" method="get">
-				<p><input type="submit" value="Back home" /></p>
+				<p><input type="submit" value="Back home"  class="trdr-input"/></p>
 			</form>
 			<form th:action="@{/logout}" method="post">
-				<p><input type="submit" value="Logout"/></p>
+				<p><input type="submit" value="Logout"  class="trdr-input"/></p>
 			</form>
 		</div>
 	</div>

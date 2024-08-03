@@ -1,7 +1,5 @@
 var app = angular.module("TraderApp", []);
-
 app.controller("ExchangeController", function ($scope, $http) {
-
     $scope.isAnyAssignment = function() {
         var result = false;
         for(var i=0; i< $scope.exchanges.length; i++) {
@@ -130,3 +128,4 @@ app.controller("BrowseController", function ($scope, $http, $filter, $window) {
         }
     }
 });
+
