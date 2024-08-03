@@ -96,14 +96,14 @@ tr:nth-child(even) {background-color: var(--bg2);}
 	text-decoration: none;
 }
 
-.trdr input[type="email"], .trdr input[type="password"], .trdr input[type="text"], .trdr input[type="file"], .trdr a {
+.trdr input[type="email"], .trdr input[type="password"], .trdr input[type="text"], .trdr input[type="file"], .trdr select, .trdr label, .trdr a {
 	background: var(--fg2);
 	border-color: transparent;
 	color: var(--gld2);
 }
 
-.trdr input[type="email"]:focus, .trdr input[type="password"]:focus,
-	.trdr a:focus {
+.trdr input:focus, .trdr input:focus,
+	.trdr a:focus, .trdr select:focus, .trdr label:focus {
 	border-color: var(--gld0);
 }
 
@@ -121,32 +121,36 @@ tr:nth-child(even) {background-color: var(--bg2);}
 	position: relative;
 	width: 96%;
  	left: 2%;
+ 	height: 40px;
+ 	border-color: transparent;
 }
 .trdr-btn-browse {
 	position: absolute;
 	z-index: 1;
-	coursor: "pointer";
+	cursor: pointer;
 	top: 0;
 	left:0;
 	width:100%;
+	height: 39px;
 }
 
 .trdr input[type="file"] {
 	position: absolute;
 	-moz-opacity:0 ;
-	filter: alpha(opacity: 0);
 	opacity: 0;
 	z-index: 2;
-	coursor: "pointer";
+	cursor: pointer;
 	top: 0;
 	left:0;
 	width:100%;
+	filter: alpha(opacity=0);
+	height: 39px;
 }
 
 .trdr input[type="submit"], .trdr input[type="button"], .trdr a {
-	:hover { background:var(--accent);}
+	:hover { background:var(--accent);
 }
 
 .trdr input[type="submit"], .trdr input[type="button"], .trdr a {
-	:focus { border-color:var(--gld0);}
+	:focus { border-color:var(--gld0);
 }

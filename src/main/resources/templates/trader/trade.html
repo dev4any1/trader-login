@@ -22,7 +22,8 @@
 					<option ng-repeat="option in exchanges" value="{{option.id}}">{{option.name}}</option>
 				</select></p>
 				<p><div class="trdr-input" th:classappend="trdr-browse">
-					<label th:classappend="trdr-btn-browse">Select exchange credentials file</label>
+					<input th:classappend="trdr-btn-browse" type="button" value="Select credentials file..." />
+					<!-- <label th:classappend="trdr-btn-browse">Select exchange credentials file</label>-->
 					<input type="file" name="file" accept="application/pdf"/>
 					</div></p>
 				<p><input type="text" name="name" placeholder="Assets"  class="trdr-input"/></p>
