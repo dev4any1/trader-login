@@ -12,6 +12,23 @@
 		<div class="trdr-triangle"></div>
 		<p th:inline="text" class="trdr-header">Hello
 			[[${#httpServletRequest.remoteUser}]]!</p>
+		<ul class="topnav">
+			<li>
+				<form th:action="@{/}" method="get">
+					<input type="submit" value="Back Home"  class="trdr-input"/>
+				</form>
+			</li>
+			<li style="float:inline-start">
+				<form action="/trader/trade">
+					<input type="submit" value="Setup Trade" class="trdr-input"/>
+				</form>
+			</li>
+			<li style="float:right">
+				<form action="/logout" method="post">
+					<input type="submit" value="Logout"  class="trdr-input"/>
+				</form>
+			</li>
+		</ul>
 		<div ng-controller="getSessions" style="overflow-x: auto;"
 			class="trdr-container">
 			<table>
@@ -37,12 +54,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<form action="/trader/trade">
-				<p><input type="submit" value="New Session"  class="trdr-input"/></p>
-			</form>
-			<form action="/sessions">
-				<p><input type="submit" value="Back to Sessions"  class="trdr-input"/></p>
-			</form>
 		</div>
 	</div>
 </body>

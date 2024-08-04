@@ -14,6 +14,24 @@
 			<div class="trdr-triangle"></div>
 			<p th:inline="text" class="trdr-header">Hello
 				[[${#httpServletRequest.remoteUser}]]!</p>
+			<ul class="topnav">
+				<li>
+					<form action="/sessions">
+						<input type="submit" value="Sessions" class="trdr-input" />
+					</form>
+				</li>
+				<li style="float: inline-start">
+					<form sec:authorize="${hasAnyAuthority('TRADER')}"
+						action="/trader/browse">
+						<input type="submit" value="Trade" class="trdr-input" />
+					</form>
+				</li>
+				<li style="float: right">
+					<form action="/logout" method="post">
+						<input type="submit" value="Logout" class="trdr-input" />
+					</form>
+				</li>
+			</ul>
 			<div class="trdr-container">
 				<table>
 					<thead>
@@ -29,16 +47,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<form action="/sessions">
-					<p><input type="submit" value="view sessions"  class="trdr-input"/></p>
-				</form>
-				<form action="/logout" method="post">
-					<p><input type="submit" value="Logout"  class="trdr-input"/></p>
-				</form>
-				<form sec:authorize="${hasAnyAuthority('TRADER')}"
-					action="/trader/browse">
-					<p><input type="submit" value="Go to Trader page"  class="trdr-input"/></p>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -47,17 +55,20 @@
 		<div class="trdr">
 			<div class="trdr-triangle"></div>
 			<h2 class="trdr-header">Welcome stranger</h2>
-			<table>
-				<thead><td>Exchange</td></thead>
-				<tbody>
-					<tr ng-repeat="exchange in exchanges">
-						<td>{{exchange.name}}</td>
-					</tr>
-				</tbody>
-			</table>
-			<form class="trdr-container">
-				<p><a href="/login" class="trdr-input">Login</a></p>
-			</form>
+			<div class="trdr-container">
+				<table>
+					<thead>
+						<td>Exchange</td>
+					</thead>
+					<tbody>
+						<tr ng-repeat="exchange in exchanges">
+							<td>{{exchange.name}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<p><a href="/login"><input class="trdr-input" type="button"
+					value="Login" /></a></p>
+			</div>
 		</div>
 	</div>
 </body>

@@ -12,6 +12,17 @@
 		<div class="trdr-triangle"></div>
 		<p th:inline="text" class="trdr-header">Hello
 			[[${#httpServletRequest.remoteUser}]]!</p>
+				<ul class="topnav">
+			<li>
+				<input type="button" value="Back"  class="trdr-input"
+					onclick="window.location.href='/trader/browse'"/>
+			</li>
+			<li style="float:right">
+				<form action="/logout" method="post">
+					<input type="submit" value="Logout"  class="trdr-input"/>
+				</form>
+			</li>
+		</ul>
 		<div ng-controller="getExchanges" class="trdr-container">
 			<form method="POST" enctype="multipart/form-data"
 				action="/trader/trade">
@@ -28,9 +39,7 @@
 					</div></p>
 				<p><input type="text" name="name" placeholder="Assets"  class="trdr-input"/></p>
 				<p><input type="text" name="limits"  placeholder="Limits"  class="trdr-input"/></p>
-				<p><input type="button" value="Back"  class="trdr-input"
-					onclick="window.location.href='/trader/browse'" /></p>
-				<p><input type="submit" value="Trade"  class="trdr-input"/></p>
+				<p><input type="submit" value="Start Session"  class="trdr-input"/></p>
 			</form>
 		</div>
 	</div>

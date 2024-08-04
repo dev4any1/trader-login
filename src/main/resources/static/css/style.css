@@ -13,10 +13,53 @@
   --red: #EF454A;
   --accent: #FFFFFF;
 }
+
 body {
 	background-color: var(--bg0);
 	color: var(--accent);
 	font-family: monospace;
+	margin: 0;
+}
+
+ul.topnav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: var(--bg2);
+	width: 100%;
+	display: table;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+
+ul.topnav li {
+	float: left;
+	border-right: 1px solid var(--bg0);
+	display: table-cell;
+	text-align: center;
+}
+ul.topnav li:last-child {
+  border-right: none;
+}
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #04AA6D;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
 }
 
 table {
@@ -102,8 +145,7 @@ tr:nth-child(even) {background-color: var(--bg2);}
 	color: var(--gld2);
 }
 
-.trdr input:focus, .trdr input:focus,
-	.trdr a:focus, .trdr select:focus, .trdr label:focus {
+.trdr input:focus, .trdr select:focus, .trdr label:focus {
 	border-color: var(--gld0);
 }
 
